@@ -1,0 +1,10 @@
+if (current.state == 3) { // On Hold
+  var inc = new GlideRecord('incident');
+  inc.initialize();
+  inc.short_description = 'License unavailable for ' + current.request_item;
+  inc.description = 'Software request could not be fulfilled due to license shortage.';
+  inc.caller_id = current.request.requested_for;
+  inc.assignment_group.setDisplayValue('Software Support');
+  inc.priority = 3;
+  inc.insert();
+}
